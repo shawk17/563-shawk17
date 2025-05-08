@@ -7,8 +7,11 @@ In this github I am going to be providing all my code, workflow, and analysis th
 ### Running the code on Borah
 * Upload and Navigate to the inputs folder
 * Type `sbatch submit.sh` (change the appropiate lines on the file to run an ice or water run)
-* Run `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc` to get Q6 data
-* Run `gmx_mpi energy -f prd.edr -o prd` and choose the observable you want to analyze
+* If you want to analyze the data output: 
+    * Type `dev-session` to get into a developer session
+    * Type `module load gromacs+plumed/2024.5/openmpi/4.1.3/gcc/12.1.0` to import gromacs and plumed
+    * Type `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc` to get Q6 data
+    * Type `gmx_mpi energy -f prd.edr -o prd` and choose the observable you want to analyze
 
 
 ## Overview
