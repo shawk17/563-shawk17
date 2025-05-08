@@ -49,6 +49,12 @@ afterward I needed to modify the .gro file so the atom types matched my .itp fil
 ### itp file
 The .itp file is from the `oplsaa.ff` folder from the gromacs library, and my exact version can be found [here](info/tip4p.itp)
 ## Anaylsis
+Here we can visibly see the difference between 2 the water and ice.
+<p float="middle">
+  <img src="Images/Frame_43.png" width="500" />
+  <img src="Images/Frame_42.png" width="500" /> 
+</p>
+
 ### Potential Energy
 ### Q6
 Looking at the Q6 parameter of the water, we see that A pure crystal has a Q6 of 0.63, ice has a Q6 above 0.55, and water is below 0.45.
@@ -88,6 +94,7 @@ To get the Q6 you can use the [plumed.dat](info/plumed_xtc.dat) file to get your
 
 `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc`
 ### Make Specifications
+To see the build specificaton see [this text file](info/gromacs_specs.txt).
 
 ## Trouble Shooting
 ### Ringing with Temperature Equilibration
