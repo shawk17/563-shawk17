@@ -28,6 +28,11 @@ For the analysis, I looked at Q6 and the potential energy.
 ### Borah Specifics
 #### Loading Modules
 `module load gromacs+plumed/2024.5/openmpi/4.1.3/gcc/12.1.0`
+
+`which gmx_mpi`: `/cm/shared/apps/gromacs+plumed/2024.5/openmpi/4.1.3/gcc/12.1.0/bin/gmx_mpi`
+
+`which plumed`:`/cm/shared/apps/plumed/2.9.3/openmpi/4.1.3/gcc/12.1.0/bin/plumed`
+
 #### Gromacs Commands
 `gmx_mpi energy -f prd.edr -o prd`
 This puts out an .xvg file, that contains whatever info you ask it for, I typically asked for PE, KE, T, Pressure, Density, and System T.
