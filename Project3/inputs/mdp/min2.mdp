@@ -1,14 +1,10 @@
 
-define                   = -DFLEXIBLE
 integrator               = steep
-nsteps                   = 1000
+nsteps                   = 50000
 
 nstenergy                = 500
 nstlog                   = 500
 nstxout-compressed       = 1000
-
-constraint-algorithm     = lincs
-constraints              = h-bonds
 
 cutoff-scheme            = Verlet
 
