@@ -27,6 +27,8 @@ To see all the .mdp options see the mdp folder.
 ## Anaylsis
 ### Potential Energy
 ### Q6
+Looking at the Q6 parameter of the water, we see that A pure crystal has a Q6 of 0.63, ice has a Q6 above 0.55, and water is below 0.45.
+![Comparison of Q6 values](Images/Q6_comparison.png)
 
 ### Deccorrelation Time
 ### Free Energy Difference???
@@ -40,7 +42,7 @@ To see all the .mdp options see the mdp folder.
 
 `which plumed`:`/cm/shared/apps/plumed/2.9.3/openmpi/4.1.3/gcc/12.1.0/bin/plumed`
 
-`gmx_mpi --version`: See [This text file](gromacs_specs.txt).
+`gmx_mpi --version`: See [This text file](info/gromacs_specs.txt).
 
 #### Gromacs Commands
 `gmx_mpi energy -f prd.edr -o prd`
@@ -54,9 +56,11 @@ There are 2 main commands in gro-step, the `grompp` command, which will create t
 
 To use this in a submit make sure you have a `conf.gro`, as well as a `job.mdp` file, and then you can use `bash gro-step job`.
 ##### submit script
-In my submit script I am exporting `GMXLIB=$HOME/GMXLIB`, this is will be different on you machine depending on were your gromacs data is. You can also see the [submit](specs\submit.sh)
+In my submit script I am exporting `GMXLIB=$HOME/GMXLIB`, this is will be different on you machine depending on were your gromacs data is. You can also see the [submit](info/submit.sh) to get the nodes requested, time allocation for the job, and other submission script specifications. If you don't use Borah these will be different.
 
 #### Plumed Commands
+To get the Q6 you can use the [plumed.dat](info/plumed_xtc.dat) file to get your outputs
+
 `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc`
 ### Make Specifications
 
@@ -69,11 +73,13 @@ Using the `Parrinello-Raham` barostat for the initial equilibration caused some 
 ![An images of water with a giant cavity](Images/Equilibration_with_temp.png)
 Attempting to use the `berendsen` barostat caused gromacs to have a warning, and I could use it without turning on the `max_warn` option. It said instead to use the `C-rescale` barostat, which it said was good for both equilibration and production runs. I do not have a good enough understanding of barostats to evalulate this statement. I decided to go with the `C-rescale` barostat for all of my equilibration and production runs as it seemed to work fine. 
 ### Superheating
-At first I was a little concerned that my temperatures did not match the literature values
+At first I was a little concerned that my temperatures did not match the [literature values](https://pubs.aip.org/aip/jcp/article/124/14/144506/929132/The-melting-point-of-ice-Ih-for-common-water), however the paper I read said that it was possible to superheat solids if there was no interface. [Another paper](https://www.tandfonline.com/doi/abs/10.1080/00268970412331293820), said that the superheating is usually on the of about 90 K, which about matched the results I got. 
 
 ## References
 * VMD
 * Gromacs
 * Plumed
-* Papers
-* GenIce2
+* [The range of meta stability of ice-water melting for two simple models of water](https://www.tandfonline.com/doi/abs/10.1080/00268970412331293820)
+* [The melting point of ice for common water models calculated from direct coexistence of the solid-liquid interface](https://pubs.aip.org/aip/jcp/article/124/14/144506/929132/The-melting-point-of-ice-Ih-for-common-water)
+* [GenIce2](https://github.com/vitroid/GenIce)
+  * [Collab](https://colab.research.google.com/github/vitroid/GenIce/blob/main/jupyter.ipynb)
