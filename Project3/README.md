@@ -1,8 +1,8 @@
 # Project 3: Identifying the Melting Temperature of Different Models of Ice Using Gromacs
 In this github I am going to be providing all my code, workflow, and analysis that I used to identify the melting temperature of TIP4P (for this project).
-|      | My Work   | Literature|
+|      | My Work   | Literature [1](https://pubs.aip.org/aip/jcp/article/124/14/144506/929132/The-melting-point-of-ice-Ih-for-common-water)|
 |-----:|-----------|-----------|
-| TIP4P| 300       | 230       |
+| TIP4P| 300       | 229 (2)   |
 
 ## Overview
 I started with a perfect crystal of ice which was generated from 🚨 link here
@@ -55,10 +55,10 @@ Looking at the Q6 parameter of the water, we see that A pure crystal has a Q6 of
 ![Comparison of Q6 values](Images/Q6_comparison.png)
 
 ### Deccorrelation Time
-### Free Energy Difference???
 
 ## Gromacs Version and Specifications
 ### Borah Specifics
+For the build instructions see [this text file](info/gromacs_specs.txt).
 #### Loading Modules
 `module load gromacs+plumed/2024.5/openmpi/4.1.3/gcc/12.1.0`
 
