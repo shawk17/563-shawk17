@@ -16,13 +16,35 @@ For the analysis, I looked at Q6 and the potential energy.
 ## Input Files
 ### .mdp
 To see all the .mdp options see the mdp folder.
-#### min.mdp and min2.mdp
-*
+
 #### eql.mdp
-*
+The [equilibrate](mdp/eql.mpd), [equilibrate warm](mdp/eql_warm.warm), and [equilibrate hot](mdp/eql_hot.mdp), will equilibrate the system to 150 K, 280 K, and 300 K respectively. I used these for the production run, ice run, and the water run (note 300K did not quite melt the ice in the equilibration run).
 #### prd.mdp
-* 
+The [production](mdp/prd.mpd) will ramp the temperature from 150-330K over 1E6 time steps. While the [production](mdp/prd_ice.mpd), and [production](mdp/prd_water.mpd) well keep the temperature steady at 280K and 300K respectively.
 ### Topology
+The topology was created using [this](https://colab.research.google.com/github/vitroid/GenIce/blob/main/jupyter.ipynb) google collab, but I only needed a few lines:
+
+```
+%pip install genice2 genice2-svg genice2-cage
+%pip install genice2-mdanalysis
+exit(0)
+```
+and
+```
+from genice2.genice import GenIce
+from genice2.plugin import Lattice, Format, Molecule
+
+lattice = Lattice("ice1h_unit")
+formatter = Format("mdanalysis")
+water = Molecule("spce") # Modift this line to get the output you want I used TIP4P
+universe = GenIce(lattice, reshape=[[4, 0, 0], [0, 4, 0], [0, 0, 4]]).generate_ice(
+    formatter, water=water)
+# Save as a .gro file.
+allatoms = universe.select_atoms("all")
+allatoms.write("conf.gro")
+```
+afterward I needed to modify the .gro file so the atom types matched my .itp file you can see my conf.gro file [here]().
+### itp file
 
 ## Anaylsis
 ### Potential Energy
