@@ -2,7 +2,7 @@
 In this github I am going to be providing all my code, workflow, and analysis that I used to identify the melting temperature of TIP4P (for this project).
 |      | My Work   | Literature [1](https://pubs.aip.org/aip/jcp/article/124/14/144506/929132/The-melting-point-of-ice-Ih-for-common-water)|
 |-----:|-----------|-----------|
-| TIP4P| 300       | 229 (2)   |
+| TIP4P| 297 (3)   | 229 (2)   |
 
 ## Overview
 I started with a perfect crystal of ice which was generated from [genice](https://colab.research.google.com/github/vitroid/GenIce/blob/main/jupyter.ipynb) link here
@@ -64,10 +64,35 @@ Looking at the Q6 parameter of the water, we see that A pure crystal has a Q6 of
 ### Finding the Melting Point
 To find the melting temperature I zoomed in to the area where the potential energy had its jump and took the average of the temperatures between that jump.
 
-![A zoomed in image of the melting temp](Images/Melting_Temp_PE.png)
+![A zoomed in image of the melting temp](Images/Melting_Temp.png)
 
 Here is some 3 more runs
+
 ![A zoomed in image of the melting temp](Images/production_melt.png)
+
+#### Statistics
+
+I ran 3 different runs with 2 different time intervals. I looked at the potential energy graphs to estimate the temperatur of when it melted. The errors in the temperature varied, exspecially with the run with less time steps. So instead of taking a direct mean, (which would weight all the data the same), I am taking a weighted variance mean where the significance of the measurement is dependent on the variance. The formula is as follows:
+
+$$w_i = \frac{1}{\sigma_i^2}$$
+
+$$\bar{x} = \frac{\sum_i^n {x_i w_i}}{\sum_i^n {w_i}}$$
+
+and the weighted error is:
+
+$$\sigma_{\bar{x}} = \sqrt{\frac{1}{\sum^n_i w_i}}$$
+
+I would claim this equation would apply as I am trying to measure a single value (the melting temperature of TIP4P water).
+
+Ref: [Weight Means](https://en.wikipedia.org/wiki/Weighted_arithmetic_mean)
+
+|      | Melting Temp (K)   | Uncertainty (K)|
+|-----:|-----------|-----------|
+| prd 1| 299       | 5   |
+| prd 2| 294       | 6   |
+| prd 3| 303       | 7   |
+| prd 4| 286       | 11  |
+| Weighted Average| 297       | 3  |
 
 ### Deccorrelation Time
 Below is the autocorrelation times of both water and ice for various observables, what is interesting to note here is that water has longer autocorrelation times than ice for every obsevable, but most especially PE. Water takes nearly 50 ps to relax while Ice relaxes quickly (<0.4 ps). With this data though we can conclude that we are getting good sampling on either side of the melting temperature in our melt run. The Q6 took about 60 ps to decorrelate for both the water and the ice, much longer than any other parameter.
