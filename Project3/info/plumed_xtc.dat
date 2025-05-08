@@ -1,0 +1,4 @@
+# Use Q6 on all atoms (or a subset if needed)
+q6: Q6 SPECIES=1-4096:4  SWITCH={CUBIC D_0=0.3 D_MAX=0.4} MEAN
+PRINT ARG=q6.mean FILE=Q6_pdr_ice.out STRIDE=1
+
