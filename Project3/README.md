@@ -33,6 +33,8 @@ For the analysis, I looked at Q6 and the potential energy.
 
 `which plumed`:`/cm/shared/apps/plumed/2.9.3/openmpi/4.1.3/gcc/12.1.0/bin/plumed`
 
+`gmx_mpi --version`: See [This gromacs text file](gromacs_spec.txt) file
+
 #### Gromacs Commands
 `gmx_mpi energy -f prd.edr -o prd`
 This puts out an .xvg file, that contains whatever info you ask it for, I typically asked for PE, KE, T, Pressure, Density, and System T.
