@@ -15,6 +15,13 @@ For the analysis, I looked at Q6 and the potential energy.
 
 ## Input Files
 ### .mdp
+To see all the .mdp options see the mdp folder.
+#### min.mdp and min2.mdp
+*
+#### eql.mdp
+*
+#### prd.mdp
+* 
 ### Topology
 
 ## Anaylsis
@@ -38,6 +45,16 @@ For the analysis, I looked at Q6 and the potential energy.
 #### Gromacs Commands
 `gmx_mpi energy -f prd.edr -o prd`
 This puts out an .xvg file, that contains whatever info you ask it for, I typically asked for PE, KE, T, Pressure, Density, and System T.
+##### gro-step
+There are 2 main commands in gro-step, the `grompp` command, which will create the job, and the `mdrun` command which will run the job. Please note that the options for the `mdrun` command can all be replaced with `-defnm ${JOB}`. Also at the begining of the file I have the command `JOB=$1`.
+
+`mpirun -np 1 -npernode 48 gmx_mpi grompp -f ${JOB}.mdp -c $STRUCTURE -o ${JOB}.tpr -pp ${JOB}.top -po ${JOB}.mdp`
+
+`mpirun -np 1 -npernode 48 gmx_mpi mdrun	-s ${JOB}.tpr	-o ${JOB}.trr	-x ${JOB}.xtc	-c ${JOB}.gro	-e ${JOB}.edr -g ${JOB}.log`
+
+To use this in a submit make sure you have a `conf.gro`, as well as a `job.mdp` file, and then you can use `bash gro-step job`.
+##### submit script
+In my submit script I am exporting `GMXLIB=$HOME/GMXLIB`, this is will be different on you machine depending on were your gromacs data is. You can also see the [submit](specs\submit.sh)
 
 #### Plumed Commands
 `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc`
