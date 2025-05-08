@@ -33,21 +33,24 @@ For the analysis, I looked at Q6 and the potential energy.
 
 `which plumed`:`/cm/shared/apps/plumed/2.9.3/openmpi/4.1.3/gcc/12.1.0/bin/plumed`
 
-`gmx_mpi --version`: See [This gromacs text file](gromacs_spec.txt) file
+`gmx_mpi --version`: See [This text file](gromacs_specs.txt).
 
 #### Gromacs Commands
 `gmx_mpi energy -f prd.edr -o prd`
 This puts out an .xvg file, that contains whatever info you ask it for, I typically asked for PE, KE, T, Pressure, Density, and System T.
+
 #### Plumed Commands
 `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc`
 ### Make Specifications
-### 
 
 ## Trouble Shooting
 ### Ringing with Temperature Equilibration
 Shown in the image below we can see *ringing* in the temperature as I am trying to equilibrate the system. This oscillation does not diminish even over long simulation times (the mosth I tried was 1E6 steps). This caused the system to melt long during the equilibration step which made it impossible to do the analysis I wanted to.
 ![Ringing Temperature](Images/Ringing.png)
 ### Finding the Barostat
+Using the `Parrinello-Raham` barostat for the initial equilibration caused some issues, as can be seen here: 
+![An images of water with a giant cavity](Images/Equilibration_with_temp.png)
+Attempting to use the `berendsen` barostat caused gromacs to have a warning, and I could use it without turning on the `max_warn` option. It said instead to use the `C-rescale` barostat, which it said was good for both equilibration and production runs. I do not have a good enough understanding of barostats to evalulate this statement. I decided to go with the `C-rescale` barostat for all of my equilibration and production runs as it seemed to work fine. 
 ### Superheating
 At first I was a little concerned that my temperatures did not match the literature values
 
