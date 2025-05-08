@@ -11,7 +11,8 @@ For this project I ran 2 minimization and 1 equilibration step that did not chan
 2. Equilibration: for the equilibration step I did the temperature and the pressure equilibration together (see **Trouble Shooting** section for details)
 3. Production
 For the analysis, I looked at Q6 and the potential energy.
-**All files mentioned can be found on GitHub**
+
+To run this code on Borah, upload the inputs file, navivagate to the folder, and type `sbatch submit.sh`. If you want to run the ice or water production change the corresponding lines in the `submit.sh` file.
 
 ## Input Files
 ### .mdp
