@@ -4,16 +4,20 @@ In this github I am going to be providing all my code, workflow, and analysis th
 |-----:|-----------|-----------|
 | TIP4P| 297 (3)   | 229 (2)   |
 
+### Running the code on Borah
+* Upload and Navigate to the inputs folder
+* Type `sbatch submit.sh` (change the appropiate lines on the file to run an ice or water run)
+* Run `plumed driver --plumed plumed_xtc.dat --mf_xtc prd.xtc` to get Q6 data
+* Run `gmx_mpi energy -f prd.edr -o prd` and choose the observable you want to analyze
+
+
 ## Overview
 I started with a perfect crystal of ice which was generated from [genice](https://colab.research.google.com/github/vitroid/GenIce/blob/main/jupyter.ipynb) link here
 For this project I ran 2 minimization and 1 equilibration step that did not change, the production step had several variations. 
 1. Minimization
-2. Equilibration: for the equilibration step I did the temperature and the pressure equilibration together (see **Trouble Shooting** section for details)
+2. Equilibration
 3. Production
-For the analysis, I looked at Q6 and the potential energy.
-
-### Running the code
-To run this code on Borah, upload the inputs file, navivagate to the inputs folder, and type `sbatch submit.sh`. If you want to run the ice or water production change the corresponding lines in the `submit.sh` file.
+For the analysis, I looked at Q6, potential energy, and temperature.
 
 ## Input Files
 ### .mdp
