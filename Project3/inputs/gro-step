@@ -8,7 +8,7 @@ else
 fi
 
 mpirun -np 1 -npernode 48 gmx_mpi grompp \
-	-f ../mdp/${JOB}.mdp \
+	-f mdp/${JOB}.mdp \
 	-c $STRUCTURE \
 	-o ${JOB}.tpr \
 	-pp ${JOB}.top \
