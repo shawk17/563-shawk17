@@ -12,7 +12,8 @@ For this project I ran 2 minimization and 1 equilibration step that did not chan
 3. Production
 For the analysis, I looked at Q6 and the potential energy.
 
-To run this code on Borah, upload the inputs file, navivagate to the folder, and type `sbatch submit.sh`. If you want to run the ice or water production change the corresponding lines in the `submit.sh` file.
+### Running the code
+To run this code on Borah, upload the inputs file, navivagate to the inputs folder, and type `sbatch submit.sh`. If you want to run the ice or water production change the corresponding lines in the `submit.sh` file.
 
 ## Input Files
 ### .mdp
@@ -44,9 +45,9 @@ universe = GenIce(lattice, reshape=[[4, 0, 0], [0, 4, 0], [0, 0, 4]]).generate_i
 allatoms = universe.select_atoms("all")
 allatoms.write("conf.gro")
 ```
-afterward I needed to modify the .gro file so the atom types matched my .itp file you can see my conf.gro file [here]().
+afterward I needed to modify the .gro file so the atom types matched my .itp file you can see my conf.gro file [here](inputs/conf.gro).
 ### itp file
-
+The .itp file is from the `oplsaa.ff` folder from the gromacs library, and my exact version can be found [here](info/tip4p.itp)
 ## Anaylsis
 ### Potential Energy
 ### Q6
@@ -79,7 +80,7 @@ There are 2 main commands in gro-step, the `grompp` command, which will create t
 
 To use this in a submit make sure you have a `conf.gro`, as well as a `job.mdp` file, and then you can use `bash gro-step job`.
 ##### submit script
-In my submit script I am exporting `GMXLIB=$HOME/GMXLIB`, this is will be different on you machine depending on were your gromacs data is. You can also see the [submit](info/submit.sh) to get the nodes requested, time allocation for the job, and other submission script specifications. If you don't use Borah these will be different.
+In my submit script I am exporting `GMXLIB=$HOME/GMXLIB`, this is will be different on you machine depending on were your gromacs data is. You can also see the [submit](inputs/submit.sh) to get the nodes requested, time allocation for the job, and other submission script specifications. If you don't use Borah these will be different.
 
 #### Plumed Commands
 To get the Q6 you can use the [plumed.dat](info/plumed_xtc.dat) file to get your outputs
