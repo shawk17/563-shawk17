@@ -38,6 +38,8 @@ This puts out an .xvg file, that contains whatever info you ask it for, I typica
 
 ## Trouble Shooting
 ### Ringing with Temperature Equilibration
+Shown in the image below we can see *ringing* in the temperature as I am trying to equilibrate the system. This oscillation does not diminish even over long simulation times (the mosth I tried was 1E6 steps). This caused the system to melt long during the equilibration step which made it impossible to do the analysis I wanted to.
+![Ringing Temperature](Images/Ringing.png)
 ### Finding the Barostat
 ### Superheating
 At first I was a little concerned that my temperatures did not match the literature values
