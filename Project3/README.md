@@ -52,6 +52,7 @@ The .itp file is from the `oplsaa.ff` folder from the gromacs library, and my ex
 ### Potential Energy
 ### Q6
 Looking at the Q6 parameter of the water, we see that A pure crystal has a Q6 of 0.63, ice has a Q6 above 0.55, and water is below 0.45.
+
 ![Comparison of Q6 values](Images/Q6_comparison.png)
 
 ### Deccorrelation Time
@@ -91,6 +92,7 @@ To get the Q6 you can use the [plumed.dat](info/plumed_xtc.dat) file to get your
 ## Trouble Shooting
 ### Ringing with Temperature Equilibration
 Shown in the image below we can see *ringing* in the temperature as I am trying to equilibrate the system. This oscillation does not diminish even over long simulation times (the mosth I tried was 1E6 steps). This caused the system to melt long during the equilibration step which made it impossible to do the analysis I wanted to.
+
 ![Ringing Temperature](Images/Ringing.png)
 ### Finding the Barostat
 Using the `Parrinello-Raham` barostat for the initial equilibration caused some issues, as can be seen here: 
